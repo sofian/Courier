@@ -117,7 +117,7 @@ void Courier::endSend() {
   _stream->write(_cmdDelimiter);
 }
 
-void Courier::_skipArgDelimiters(size_t minChars) {
+void Courier::_skipArgDelimiters() {
   while (!_stream->available()) {
     while (_stream->peek() == _argDelimiter)
       _stream->read();
