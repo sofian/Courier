@@ -29,7 +29,7 @@ bool Courier::hasMoreArgs() {
 char Courier::nextChar()
 {
   _skipArgDelimiters();
-  return (char) _stream->read();
+  return (char)_stream->read();
 }
 
 byte Courier::nextByte()
