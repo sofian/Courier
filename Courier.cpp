@@ -17,8 +17,7 @@ void Courier::update() {
   {
     _callback(_stream->read());
     
-    // TODO: check if this times out
-    _stream->find(&_cmdDelimiter);
+    while (_stream->read() != _cmdDelimiter);
   }
 }
 
@@ -113,14 +112,16 @@ void Courier::sendFloat(float v)
   else
     _stream->write((const uint8_t*)&v, sizeof(float));
 }
-
+  
 void Courier::endSend() {
   _stream->write(_cmdDelimiter);
 }
 
-void Courier::_skipArgDelimiters() {
-  while (_stream->peek() == _argDelimiter)
-    _stream->read();
+void Courier::_skipArgDelimiters(size_t minChars) {
+  while (!_stream->available()) {
+    while (_stream->peek() == _argDelimiter)
+      _stream->read();
+  }
 }
 
 //void Courier::_readBytes(char* buffer, size_t length) 
