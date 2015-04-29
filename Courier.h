@@ -13,7 +13,7 @@ private:
   bool _asciiMode;
   
 public:
-  Courier(Stream* stream, void (*callback)(char));
+  Courier(void (*callback)(char), Stream* stream=&Serial);
 
   void update();
   

@@ -5,7 +5,7 @@
 #endif
 #include "Courier.h"
 
-Courier::Courier(Stream* stream, void (*callback)(char))
+Courier::Courier(void (*callback)(char), Stream* stream)
 {
   _stream = stream;
   _callback = callback;
@@ -88,7 +88,13 @@ void Courier::sendChar(char c)
 
 void Courier::sendByte(byte v) 
 {
-  sendChar((char)v);
+  if (_asciiMode)
+  {
+    _stream->write(_argDelimiter);
+    _stream->print(v);
+  }
+  else
+    _stream->write(v);
 }
 
 void Courier::sendInt(int v) 
