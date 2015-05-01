@@ -22,12 +22,13 @@
 
 #include <Arduino.h>
 
+#define COURIER_ARG_DELIMITER ' '
+#define COURIER_CMD_DELIMITER '\n'
+
 class Courier 
 {
 private:
   Stream* _stream;
-  char _argDelimiter = ' ';
-  char _cmdDelimiter = '\n';
   void (*_callback)(char);
   bool _asciiMode;
   

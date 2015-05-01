@@ -36,13 +36,13 @@ void Courier::update() {
   {
     _callback(_stream->read());
     
-    while (_stream->read() != _cmdDelimiter);
+    while (_stream->read() != COURIER_CMD_DELIMITER);
   }
 }
 
 bool Courier::hasMoreArgs() {
   _skipArgDelimiters();
-  return (_stream->peek() != _cmdDelimiter);
+  return (_stream->peek() != COURIER_CMD_DELIMITER);
 }
 
 char Courier::nextChar()
@@ -101,7 +101,7 @@ void Courier::beginSend(char cmd, bool end)
 void Courier::sendChar(char c) 
 {
   if (_asciiMode)
-    _stream->write(_argDelimiter);
+    _stream->write(COURIER_ARG_DELIMITER);
   _stream->write(c);
 }
 
@@ -109,7 +109,7 @@ void Courier::sendByte(byte v)
 {
   if (_asciiMode)
   {
-    _stream->write(_argDelimiter);
+    _stream->write(COURIER_ARG_DELIMITER);
     _stream->print(v);
   }
   else
@@ -120,7 +120,7 @@ void Courier::sendInt(int v)
 {
   if (_asciiMode)
   {
-    _stream->write(_argDelimiter);
+    _stream->write(COURIER_ARG_DELIMITER);
     _stream->print(v);
   }
   else
@@ -131,7 +131,7 @@ void Courier::sendFloat(float v)
 {
   if (_asciiMode) 
   {
-    _stream->write(_argDelimiter);
+    _stream->write(COURIER_ARG_DELIMITER);
     _stream->print(v);
   }
   else
@@ -139,12 +139,12 @@ void Courier::sendFloat(float v)
 }
   
 void Courier::endSend() {
-  _stream->write(_cmdDelimiter);
+  _stream->write(COURIER_CMD_DELIMITER);
 }
 
 void Courier::_skipArgDelimiters() {
   while (!_stream->available()) {
-    while (_stream->peek() == _argDelimiter)
+    while (_stream->peek() == COURIER_ARG_DELIMITER)
       _stream->read();
   }
 }
@@ -152,7 +152,7 @@ void Courier::_skipArgDelimiters() {
 //void Courier::_readBytes(char* buffer, size_t length) 
 //{
 //  // TODO: check if number of bytes read == length to catch errors
-//  _stream->readBytesUntil(_cmdDelimiter, buffer, length);
+//  _stream->readBytesUntil(COURIER_CMD_DELIMITER, buffer, length);
 //}
 
 
