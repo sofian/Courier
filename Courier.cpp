@@ -47,8 +47,13 @@ bool Courier::hasMoreArgs() {
 
 char Courier::nextChar()
 {
-  _skipArgDelimiters();
-  return (char)_stream->read();
+  while (true) {
+    if (_stream->available()) {
+      int c = _stream->read();
+      if (c != COURIER_ARG_DELIMITER)
+        return c;
+    }
+  }
 }
 
 byte Courier::nextByte()
