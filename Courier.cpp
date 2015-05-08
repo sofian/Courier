@@ -78,7 +78,9 @@ char Courier::nextChar()
 byte Courier::nextByte()
 {
   if (_asciiMode)
+  {
     return (byte) _stream->parseInt();
+  }
   else 
   {
     byte val;
@@ -90,7 +92,9 @@ byte Courier::nextByte()
 int Courier::nextInt()
 {
   if (_asciiMode)
+  {
     return _stream->parseInt();
+  }
   else 
   {
     int val;
@@ -102,7 +106,9 @@ int Courier::nextInt()
 float Courier::nextFloat() 
 {
   if (_asciiMode)
+  {
     return _stream->parseFloat();
+  }
   else 
   {
     float val;
