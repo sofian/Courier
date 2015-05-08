@@ -35,10 +35,10 @@ private:
 public:
   Courier(void (*callback)(char), Stream* stream=&Serial);
 
-  void update();
-  
   bool isAsciiMode() const { return _asciiMode; }
   void setAsciiMode(bool asciiMode) { _asciiMode = asciiMode; }
+
+  void update();
   
   // WARNING: Only works in ascii mode.
   //bool hasMoreArgs();
