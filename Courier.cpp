@@ -32,7 +32,7 @@ Courier::Courier(void (*callback)(char), Stream* stream)
 void Courier::update() {
   if (_stream->available())
   {
-    _callback(_stream->read());
+    _callback(nextChar());
     
     while (_stream->read() != COURIER_CMD_DELIMITER);
   }
