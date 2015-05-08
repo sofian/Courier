@@ -40,7 +40,8 @@ public:
   bool isAsciiMode() const { return _asciiMode; }
   void setAsciiMode(bool asciiMode) { _asciiMode = asciiMode; }
   
-  bool hasMoreArgs();
+  // WARNING: Only works in ascii mode.
+  //bool hasMoreArgs();
   
   char nextChar();
   byte nextByte();

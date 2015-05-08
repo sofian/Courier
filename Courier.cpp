@@ -40,10 +40,10 @@ void Courier::update() {
   }
 }
 
-bool Courier::hasMoreArgs() {
-  _skipArgDelimiters();
-  return (_stream->peek() != COURIER_CMD_DELIMITER);
-}
+//bool Courier::hasMoreArgs() {
+//  _skipArgDelimiters();
+//  return (_stream->peek() != COURIER_CMD_DELIMITER);
+//}
 
 char Courier::nextChar()
 {
