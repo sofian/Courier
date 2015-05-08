@@ -25,10 +25,8 @@
 #include "Courier.h"
 
 Courier::Courier(void (*callback)(char), Stream* stream)
+  : _callback(callback), _stream(stream), _asciiMode(true)
 {
-  _stream = stream;
-  _callback = callback;
-  _asciiMode = true;
 }
 
 void Courier::update() {
