@@ -59,7 +59,7 @@ public:
   void sendNoArgs(char cmd);
 
 private:
-  void _skipArgDelimiters();
+//  void _skipArgDelimiters();
 //  void _readBytes(char* buffer, size_t length);  
 };
 

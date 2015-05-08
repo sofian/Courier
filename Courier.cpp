@@ -56,7 +56,6 @@ char Courier::nextChar()
 
 byte Courier::nextByte()
 {
-  _skipArgDelimiters();
   if (_asciiMode)
     return (byte) _stream->parseInt();
   else 
@@ -69,7 +68,6 @@ byte Courier::nextByte()
 
 int Courier::nextInt()
 {
-  _skipArgDelimiters();
   if (_asciiMode)
     return _stream->parseInt();
   else 
@@ -82,7 +80,6 @@ int Courier::nextInt()
 
 float Courier::nextFloat() 
 {
-  _skipArgDelimiters();
   if (_asciiMode)
     return _stream->parseFloat();
   else 
@@ -146,13 +143,14 @@ void Courier::endSend() {
 void Courier::sendNoArgs(char cmd) {
   beginSend(cmd);
   endSend();
-void Courier::_skipArgDelimiters() {
-  while (!_stream->available()) {
-    while (_stream->peek() == COURIER_ARG_DELIMITER)
-      _stream->read();
-  }
 }
 
+//void Courier::_skipArgDelimiters() {
+//  while (!_stream->available()) {
+//    while (_stream->peek() == COURIER_ARG_DELIMITER)
+//      _stream->read();
+//  }
+//}
 //void Courier::_readBytes(char* buffer, size_t length) 
 //{
 //  // TODO: check if number of bytes read == length to catch errors
