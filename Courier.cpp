@@ -105,7 +105,7 @@ int16_t Courier::nextInt()
   }
 }
 
-float Courier::nextFloat() 
+float Courier::nextFloat()
 {
   if (_asciiMode)
   {
@@ -180,6 +180,7 @@ void Courier::sendNoArgs(char cmd) {
 //      _stream->read();
 //  }
 //}
+
 //void Courier::_readBytes(char* buffer, size_t length) 
 //{
 //  // TODO: check if number of bytes read == length to catch errors
