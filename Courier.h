@@ -44,14 +44,14 @@ public:
   //bool hasMoreArgs();
   
   char nextChar();
-  byte nextByte();
-  int nextInt();
+  uint8_t nextByte();
+  int16_t nextInt();
   float nextFloat();
   
   void beginSend(char cmd);
   void sendChar(char c);
-  void sendByte(byte v);
-  void sendInt(int v);
+  void sendByte(uint8_t v);
+  void sendInt(int16_t v);
   void sendFloat(float v);
   void endSend();
 

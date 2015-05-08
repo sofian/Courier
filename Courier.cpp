@@ -75,21 +75,21 @@ char Courier::nextChar()
   return c;
 }
 
-byte Courier::nextByte()
+uint8_t Courier::nextByte()
 {
   if (_asciiMode)
   {
-    return (byte) _stream->parseInt();
+    return (uint8_t) _stream->parseInt();
   }
   else 
   {
-    byte val;
-    _stream->readBytes((char*)&val, sizeof(byte));
+    uint8_t val;
+    _stream->readBytes((char*)&val, sizeof(uint8_t));
     return val;
   }
 }
 
-int Courier::nextInt()
+int16_t Courier::nextInt()
 {
   if (_asciiMode)
   {
@@ -98,7 +98,7 @@ int Courier::nextInt()
   else 
   {
     int val;
-    _stream->readBytes((char*)&val, sizeof(int));
+    _stream->readBytes((char*)&val, sizeof(int16_t));
     return val;
   }
 }
