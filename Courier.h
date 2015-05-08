@@ -48,12 +48,15 @@ public:
   int nextInt();
   float nextFloat();
   
-  void beginSend(char cmd, bool end=false);
+  void beginSend(char cmd);
   void sendChar(char c);
   void sendByte(byte v);
   void sendInt(int v);
   void sendFloat(float v);
   void endSend();
+
+  // Send no-arguments command.
+  void sendNoArgs(char cmd);
 
 private:
   void _skipArgDelimiters();

@@ -96,11 +96,9 @@ float Courier::nextFloat()
 }
 
 
-void Courier::beginSend(char cmd, bool end)
+void Courier::beginSend(char cmd)
 {
   _stream->write(cmd);
-  if (end)
-    endSend();
 }
 
 void Courier::sendChar(char c) 
@@ -147,6 +145,9 @@ void Courier::endSend() {
   _stream->write(COURIER_CMD_DELIMITER);
 }
 
+void Courier::sendNoArgs(char cmd) {
+  beginSend(cmd);
+  endSend();
 void Courier::_skipArgDelimiters() {
   while (!_stream->available()) {
     while (_stream->peek() == COURIER_ARG_DELIMITER)
