@@ -32,8 +32,10 @@ Courier::Courier(void (*callback)(char), Stream* stream)
 void Courier::update() {
   if (_stream->available())
   {
+    // Call callback function with command.
     _callback(nextChar());
     
+    // Flush rest of command (ie. until delimiter is reached).
     while (_stream->read() != COURIER_CMD_DELIMITER);
   }
 }
