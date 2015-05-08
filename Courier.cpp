@@ -45,13 +45,34 @@ void Courier::update() {
 
 char Courier::nextChar()
 {
-  while (true) {
-    if (_stream->available()) {
-      int c = _stream->read();
-      if (c != COURIER_ARG_DELIMITER)
-        return c;
+  // Find the next char.
+  char c;
+  while (true)
+  {
+    if (_stream->available())
+    {
+      c = _stream->read();
+      if (c == COURIER_CMD_DELIMITER)
+        return 0; // end-of-command: sudden death => return null character
+      else if (c != COURIER_ARG_DELIMITER)
+        break;
     }
   }
+  // Skip the following non-delimiter chars (ascii mode only).
+  if (_asciiMode) {
+    char flushChar;
+    while (true) {
+      if (_stream->available()) {
+        flushChar = _stream->peek();
+        if (flushChar == COURIER_CMD_DELIMITER || flushChar == COURIER_ARG_DELIMITER)
+          break;
+        else
+          _stream->read(); // eat char
+      }
+    }
+  }
+  // Return character.
+  return c;
 }
 
 byte Courier::nextByte()
